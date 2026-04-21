@@ -150,3 +150,14 @@ async function getTeamsNotInSpainOrEngland() {
   });
   displayResults("Teams not in Spain or England", filtered);
 }
+
+// query 6: Show all teams in Spain with more than 700M fans
+async function getSpainTeamsOver700Fans() {
+  const q = query(
+    collection(db, "teams"),
+    where("country", "==", "Spain"),
+    where("fans", ">", 700)
+  );
+  const snapshot = await getDocs(q);
+  displayResults("Teams in Spain with over 700M fans", snapshot.docs);
+}
