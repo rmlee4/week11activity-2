@@ -334,20 +334,24 @@ async function updateRealMadridColor() {
 }
 
 // // Update Barcelona away color
-// async function updateBarcelonaColor() {
-//   const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
-//   const snapshot = await getDocs(q);
+async function updateBarcelonaColor() {
+  const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
+  const snapshot = await getDocs(q);
 
-//   snapshot.forEach(async (teamDoc) => {
-//     const currentData = teamDoc.data();
-//     await updateDoc(doc(db, "teams", teamDoc.id), {
-//       color: {
-//         home: currentData.color.home,
-//         away: "Pink"
-//       }
-//     });
-//   });
-// }
+  for (const teamDoc of snapshot.docs) {
+    const currentData = teamDoc.data();
+    const teamRef = doc(db, "teams", teamDoc.id);
+
+    await updateDoc(teamRef, {
+      color: {
+        home: currentData.color.home,
+        away: "Pink"
+      }
+    });
+  }
+
+  console.log("Barcelona away color updated");
+}
 
 // // async function runColorUpdates() {
 // //   await updateRealMadridColor();
