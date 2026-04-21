@@ -358,4 +358,4 @@ async function runColorUpdates() {
   await updateBarcelonaColor();
 }
 
-runColorUpdates();
+// runColorUpdates();
