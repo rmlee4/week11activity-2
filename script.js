@@ -311,7 +311,7 @@ async function runColorAdditions() {
   await addColorsBarcelona();
 }
 
-runColorAdditions();
+// runColorAdditions();
 
 // // update real madrid away color
 // async function updateRealMadridColor() {
