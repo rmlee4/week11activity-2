@@ -306,12 +306,12 @@ async function addColorsBarcelona() {
   console.log("Barcelona colors added");
 }
 
-// // async function runColorAdditions() {
-// //   await addColorsRealMadrid();
-// //   await addColorsBarcelona();
-// // }
+async function runColorAdditions() {
+  await addColorsRealMadrid();
+  await addColorsBarcelona();
+}
 
-// // runColorAdditions();
+runColorAdditions();
 
 // // update real madrid away color
 // async function updateRealMadridColor() {
