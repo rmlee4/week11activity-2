@@ -127,3 +127,9 @@ async function getTeamsInMadridSpain() {
   displayResults("Teams in Madrid, Spain", snapshot.docs);
 }
 
+// query 3: show all national teams
+async function getNationalTeams() {
+  const q = query(collection(db, "teams"), where("isNationalTeam", "==", true));
+  const snapshot = await getDocs(q);
+  displayResults("National Teams", snapshot.docs);
+}
