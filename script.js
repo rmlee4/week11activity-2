@@ -251,8 +251,10 @@ async function updateBarcelona() {
   });
 }
 
-async function runUpdatesPartA() {
-  await updateRealMadrid();
-  await updateBarcelona();
-}
+// async function runUpdatesPartA() {
+//   await updateRealMadrid();
+//   await updateBarcelona();
+// }
+
+// runUpdatesPartA();
 
