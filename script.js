@@ -296,3 +296,19 @@ async function addColorsBarcelona() {
 // }
 
 // runColorAdditions();
+
+// update real madrid away color
+async function updateRealMadridColor() {
+  const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid FC"));
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach(async (teamDoc) => {
+    const currentData = teamDoc.data();
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      color: {
+        home: currentData.color.home,
+        away: "Purple"
+      }
+    });
+  });
+}
