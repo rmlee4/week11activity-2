@@ -206,3 +206,26 @@ async function runQueries() {
 }
 
 runQueries();
+
+// task 3a 
+
+// update real madrid
+async function updateRealMadrid() {
+  const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid"));
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach(async (teamDoc) => {
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      teamName: "Real Madrid FC",
+      fans: 811
+    });
+
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      topScorers: arrayRemove("Hazard")
+    });
+
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      topScorers: arrayUnion("Crispo")
+    });
+  });
+}
