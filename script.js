@@ -205,7 +205,7 @@ async function runQueries() {
   await getTeamsWithRonaldoMaradonaMessi();
 }
 
-// runQueries();
+runQueries();
 
 // task 3a 
 
