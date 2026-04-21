@@ -115,3 +115,15 @@ async function getTeamsInSpain() {
   const snapshot = await getDocs(q);
   displayResults("Teams in Spain", snapshot.docs);
 }
+
+// query 2: Show all teams in Madrid, Spain
+async function getTeamsInMadridSpain() {
+  const q = query(
+    collection(db, "teams"),
+    where("country", "==", "Spain"),
+    where("city", "==", "Madrid")
+  );
+  const snapshot = await getDocs(q);
+  displayResults("Teams in Madrid, Spain", snapshot.docs);
+}
+
