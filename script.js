@@ -229,3 +229,24 @@ async function updateRealMadrid() {
     });
   });
 }
+
+// update barcelona
+async function updateBarcelona() {
+  const q = query(collection(db, "teams"), where("teamName", "==", "Barcelona"));
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach(async (teamDoc) => {
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      teamName: "FC Barcelona",
+      fans: 747
+    });
+
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      topScorers: arrayRemove("Puyol")
+    });
+
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      topScorers: arrayUnion("Deco")
+    });
+  });
+}
