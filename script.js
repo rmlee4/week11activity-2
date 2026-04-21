@@ -353,9 +353,9 @@ async function updateBarcelonaColor() {
   console.log("Barcelona away color updated");
 }
 
-// // async function runColorUpdates() {
-// //   await updateRealMadridColor();
-// //   await updateBarcelonaColor();
-// // }
+async function runColorUpdates() {
+  await updateRealMadridColor();
+  await updateBarcelonaColor();
+}
 
-// // runColorUpdates();
+runColorUpdates();
