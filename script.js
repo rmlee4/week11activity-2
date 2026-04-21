@@ -182,3 +182,14 @@ async function getTeamsWithRonaldo() {
   const snapshot = await getDocs(q);
   displayResults("Teams where Ronaldo is a top scorer", snapshot.docs);
 }
+
+// query 9: show all teams where Ronaldo, Maradona, or Messi is a top scorer
+async function getTeamsWithRonaldoMaradonaMessi() {
+  const q = query(
+    collection(db, "teams"),
+    where("topScorers", "array-contains-any", ["Ronaldo", "Maradona", "Messi"])
+  );
+  const snapshot = await getDocs(q);
+  displayResults("Teams where Ronaldo, Maradona, or Messi is a top scorer", snapshot.docs);
+}
+
