@@ -312,3 +312,19 @@ async function updateRealMadridColor() {
     });
   });
 }
+
+// Update Barcelona away color
+async function updateBarcelonaColor() {
+  const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach(async (teamDoc) => {
+    const currentData = teamDoc.data();
+    await updateDoc(doc(db, "teams", teamDoc.id), {
+      color: {
+        home: currentData.color.home,
+        away: "Pink"
+      }
+    });
+  });
+}
