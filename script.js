@@ -328,3 +328,9 @@ async function updateBarcelonaColor() {
     });
   });
 }
+
+async function runColorUpdates() {
+  await updateRealMadridColor();
+  await updateBarcelonaColor();
+}
+
