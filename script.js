@@ -264,7 +264,7 @@ async function runUpdatesPartA() {
   await updateBarcelona();
 }
 
-runUpdatesPartA();
+// runUpdatesPartA();
 
 // task 3b
 
