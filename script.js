@@ -108,3 +108,10 @@ async function addTeams() {
 }
 
 // addTeams();
+
+// query 1: Show all teams in Spain
+async function getTeamsInSpain() {
+  const q = query(collection(db, "teams"), where("country", "==", "Spain"));
+  const snapshot = await getDocs(q);
+  displayResults("Teams in Spain", snapshot.docs);
+}
