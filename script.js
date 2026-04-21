@@ -288,19 +288,23 @@ async function addColorsRealMadrid() {
 }
 
 // // add initial color object to Barcelona
-// async function addColorsBarcelona() {
-//   const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
-//   const snapshot = await getDocs(q);
+async function addColorsBarcelona() {
+  const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
+  const snapshot = await getDocs(q);
 
-//   snapshot.forEach(async (teamDoc) => {
-//     await updateDoc(doc(db, "teams", teamDoc.id), {
-//       color: {
-//         home: "Red",
-//         away: "Gold"
-//       }
-//     });
-//   });
-// }
+  for (const teamDoc of snapshot.docs) {
+    const teamRef = doc(db, "teams", teamDoc.id);
+
+    await updateDoc(teamRef, {
+      color: {
+        home: "Red",
+        away: "Gold"
+      }
+    });
+  }
+
+  console.log("Barcelona colors added");
+}
 
 // // async function runColorAdditions() {
 // //   await addColorsRealMadrid();
