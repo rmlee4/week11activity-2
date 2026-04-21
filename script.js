@@ -193,3 +193,16 @@ async function getTeamsWithRonaldoMaradonaMessi() {
   displayResults("Teams where Ronaldo, Maradona, or Messi is a top scorer", snapshot.docs);
 }
 
+async function runQueries() {
+  await getTeamsInSpain();
+  await getTeamsInMadridSpain();
+  await getNationalTeams();
+  await getTeamsNotInSpain();
+  await getTeamsNotInSpainOrEngland();
+  await getSpainTeamsOver700Fans();
+  await getTeamsWithFans500to600();
+  await getTeamsWithRonaldo();
+  await getTeamsWithRonaldoMaradonaMessi();
+}
+
+runQueries();
