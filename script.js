@@ -290,8 +290,9 @@ async function addColorsBarcelona() {
   });
 }
 
-async function runColorAdditions() {
-  await addColorsRealMadrid();
-  await addColorsBarcelona();
-}
+// async function runColorAdditions() {
+//   await addColorsRealMadrid();
+//   await addColorsBarcelona();
+// }
 
+// runColorAdditions();
