@@ -107,4 +107,4 @@ async function addTeams() {
   console.log("All teams added");
 }
 
-addTeams();
+// addTeams();
