@@ -161,3 +161,24 @@ async function getSpainTeamsOver700Fans() {
   const snapshot = await getDocs(q);
   displayResults("Teams in Spain with over 700M fans", snapshot.docs);
 }
+
+// query 7: Show all teams with fans between 500M and 600M
+async function getTeamsWithFans500to600() {
+  const q = query(
+    collection(db, "teams"),
+    where("fans", ">=", 500),
+    where("fans", "<=", 600)
+  );
+  const snapshot = await getDocs(q);
+  displayResults("Teams with 500M to 600M fans", snapshot.docs);
+}
+
+// query 8: Show all teams where Ronaldo is a top scorer
+async function getTeamsWithRonaldo() {
+  const q = query(
+    collection(db, "teams"),
+    where("topScorers", "array-contains", "Ronaldo")
+  );
+  const snapshot = await getDocs(q);
+  displayResults("Teams where Ronaldo is a top scorer", snapshot.docs);
+}
