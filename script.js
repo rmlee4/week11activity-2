@@ -133,3 +133,10 @@ async function getNationalTeams() {
   const snapshot = await getDocs(q);
   displayResults("National Teams", snapshot.docs);
 }
+
+// query 4: Show all teams that are not in Spain
+async function getTeamsNotInSpain() {
+  const q = query(collection(db, "teams"), where("country", "!=", "Spain"));
+  const snapshot = await getDocs(q);
+  displayResults("Teams not in Spain", snapshot.docs);
+}
