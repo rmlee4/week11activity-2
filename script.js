@@ -140,3 +140,13 @@ async function getTeamsNotInSpain() {
   const snapshot = await getDocs(q);
   displayResults("Teams not in Spain", snapshot.docs);
 }
+
+// query 5: Show all teams not in Spain or England
+async function getTeamsNotInSpainOrEngland() {
+  const snapshot = await getDocs(collection(db, "teams"));
+  const filtered = snapshot.docs.filter(doc => {
+    const data = doc.data();
+    return data.country !== "Spain" && data.country !== "England";
+  });
+  displayResults("Teams not in Spain or England", filtered);
+}
