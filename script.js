@@ -205,7 +205,7 @@ async function runQueries() {
   await getTeamsWithRonaldoMaradonaMessi();
 }
 
-runQueries();
+// runQueries();
 
 // task 3a 
 
@@ -214,20 +214,24 @@ async function updateRealMadrid() {
   const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid"));
   const snapshot = await getDocs(q);
 
-  snapshot.forEach(async (teamDoc) => {
-    await updateDoc(doc(db, "teams", teamDoc.id), {
+  for (const teamDoc of snapshot.docs) {
+    const teamRef = doc(db, "teams", teamDoc.id);
+
+    await updateDoc(teamRef, {
       teamName: "Real Madrid FC",
       fans: 811
     });
 
-    await updateDoc(doc(db, "teams", teamDoc.id), {
+    await updateDoc(teamRef, {
       topScorers: arrayRemove("Hazard")
     });
 
-    await updateDoc(doc(db, "teams", teamDoc.id), {
+    await updateDoc(teamRef, {
       topScorers: arrayUnion("Crispo")
     });
-  });
+  }
+
+  console.log("Real Madrid updated");
 }
 
 // update barcelona
@@ -235,103 +239,107 @@ async function updateBarcelona() {
   const q = query(collection(db, "teams"), where("teamName", "==", "Barcelona"));
   const snapshot = await getDocs(q);
 
-  snapshot.forEach(async (teamDoc) => {
-    await updateDoc(doc(db, "teams", teamDoc.id), {
+  for (const teamDoc of snapshot.docs) {
+    const teamRef = doc(db, "teams", teamDoc.id);
+
+    await updateDoc(teamRef, {
       teamName: "FC Barcelona",
       fans: 747
     });
 
-    await updateDoc(doc(db, "teams", teamDoc.id), {
+    await updateDoc(teamRef, {
       topScorers: arrayRemove("Puyol")
     });
 
-    await updateDoc(doc(db, "teams", teamDoc.id), {
+    await updateDoc(teamRef, {
       topScorers: arrayUnion("Deco")
     });
-  });
+  }
+
+  console.log("Barcelona updated");
 }
 
-// async function runUpdatesPartA() {
-//   await updateRealMadrid();
-//   await updateBarcelona();
-// }
+async function runUpdatesPartA() {
+  await updateRealMadrid();
+  await updateBarcelona();
+}
 
-// runUpdatesPartA();
+runUpdatesPartA();
 
 // task 3b
 
-// add initial color object to Real Madrid
-async function addColorsRealMadrid() {
-  const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid FC"));
-  const snapshot = await getDocs(q);
+// // add initial color object to Real Madrid
+// async function addColorsRealMadrid() {
+//   const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid FC"));
+//   const snapshot = await getDocs(q);
 
-  snapshot.forEach(async (teamDoc) => {
-    await updateDoc(doc(db, "teams", teamDoc.id), {
-      color: {
-        home: "White",
-        away: "Black"
-      }
-    });
-  });
-}
-
-// add initial color object to Barcelona
-async function addColorsBarcelona() {
-  const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
-  const snapshot = await getDocs(q);
-
-  snapshot.forEach(async (teamDoc) => {
-    await updateDoc(doc(db, "teams", teamDoc.id), {
-      color: {
-        home: "Red",
-        away: "Gold"
-      }
-    });
-  });
-}
-
-// async function runColorAdditions() {
-//   await addColorsRealMadrid();
-//   await addColorsBarcelona();
+//   snapshot.forEach(async (teamDoc) => {
+//     await updateDoc(doc(db, "teams", teamDoc.id), {
+//       color: {
+//         home: "White",
+//         away: "Black"
+//       }
+//     });
+//   });
 // }
 
-// runColorAdditions();
+// // add initial color object to Barcelona
+// async function addColorsBarcelona() {
+//   const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
+//   const snapshot = await getDocs(q);
 
-// update real madrid away color
-async function updateRealMadridColor() {
-  const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid FC"));
-  const snapshot = await getDocs(q);
-
-  snapshot.forEach(async (teamDoc) => {
-    const currentData = teamDoc.data();
-    await updateDoc(doc(db, "teams", teamDoc.id), {
-      color: {
-        home: currentData.color.home,
-        away: "Purple"
-      }
-    });
-  });
-}
-
-// Update Barcelona away color
-async function updateBarcelonaColor() {
-  const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
-  const snapshot = await getDocs(q);
-
-  snapshot.forEach(async (teamDoc) => {
-    const currentData = teamDoc.data();
-    await updateDoc(doc(db, "teams", teamDoc.id), {
-      color: {
-        home: currentData.color.home,
-        away: "Pink"
-      }
-    });
-  });
-}
-
-// async function runColorUpdates() {
-//   await updateRealMadridColor();
-//   await updateBarcelonaColor();
+//   snapshot.forEach(async (teamDoc) => {
+//     await updateDoc(doc(db, "teams", teamDoc.id), {
+//       color: {
+//         home: "Red",
+//         away: "Gold"
+//       }
+//     });
+//   });
 // }
 
-// runColorUpdates();
+// // async function runColorAdditions() {
+// //   await addColorsRealMadrid();
+// //   await addColorsBarcelona();
+// // }
+
+// // runColorAdditions();
+
+// // update real madrid away color
+// async function updateRealMadridColor() {
+//   const q = query(collection(db, "teams"), where("teamName", "==", "Real Madrid FC"));
+//   const snapshot = await getDocs(q);
+
+//   snapshot.forEach(async (teamDoc) => {
+//     const currentData = teamDoc.data();
+//     await updateDoc(doc(db, "teams", teamDoc.id), {
+//       color: {
+//         home: currentData.color.home,
+//         away: "Purple"
+//       }
+//     });
+//   });
+// }
+
+// // Update Barcelona away color
+// async function updateBarcelonaColor() {
+//   const q = query(collection(db, "teams"), where("teamName", "==", "FC Barcelona"));
+//   const snapshot = await getDocs(q);
+
+//   snapshot.forEach(async (teamDoc) => {
+//     const currentData = teamDoc.data();
+//     await updateDoc(doc(db, "teams", teamDoc.id), {
+//       color: {
+//         home: currentData.color.home,
+//         away: "Pink"
+//       }
+//     });
+//   });
+// }
+
+// // async function runColorUpdates() {
+// //   await updateRealMadridColor();
+// //   await updateBarcelonaColor();
+// // }
+
+// // runColorUpdates();
